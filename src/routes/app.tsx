@@ -64,7 +64,7 @@ function AppLayout() {
                     return (
                       <SidebarMenuItem key={n.to}>
                         <SidebarMenuButton asChild isActive={isActive} tooltip={n.label}>
-                          <Link to={n.to} className="flex items-center gap-2">
+                          <Link to={n.to as any} className="flex items-center gap-2">
                             <n.icon className="h-4 w-4" />
                             <span>{n.label}</span>
                           </Link>
