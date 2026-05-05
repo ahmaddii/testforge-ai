@@ -14,7 +14,10 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppTestCasesRouteImport } from './routes/app.test-cases'
+import { Route as AppSettingsRouteImport } from './routes/app.settings'
 import { Route as AppRequirementsRouteImport } from './routes/app.requirements'
+import { Route as AppReportsRouteImport } from './routes/app.reports'
 import { Route as AppProjectsIndexRouteImport } from './routes/app.projects.index'
 import { Route as AppProjectsProjectIdRouteImport } from './routes/app.projects.$projectId'
 
@@ -43,9 +46,24 @@ const AppIndexRoute = AppIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppTestCasesRoute = AppTestCasesRouteImport.update({
+  id: '/test-cases',
+  path: '/test-cases',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppRequirementsRoute = AppRequirementsRouteImport.update({
   id: '/requirements',
   path: '/requirements',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppReportsRoute = AppReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
   getParentRoute: () => AppRoute,
 } as any)
 const AppProjectsIndexRoute = AppProjectsIndexRouteImport.update({
@@ -64,7 +82,10 @@ export interface FileRoutesByFullPath {
   '/app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/app/reports': typeof AppReportsRoute
   '/app/requirements': typeof AppRequirementsRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/test-cases': typeof AppTestCasesRoute
   '/app/': typeof AppIndexRoute
   '/app/projects/$projectId': typeof AppProjectsProjectIdRoute
   '/app/projects/': typeof AppProjectsIndexRoute
@@ -73,7 +94,10 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/app/reports': typeof AppReportsRoute
   '/app/requirements': typeof AppRequirementsRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/test-cases': typeof AppTestCasesRoute
   '/app': typeof AppIndexRoute
   '/app/projects/$projectId': typeof AppProjectsProjectIdRoute
   '/app/projects': typeof AppProjectsIndexRoute
@@ -84,7 +108,10 @@ export interface FileRoutesById {
   '/app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/app/reports': typeof AppReportsRoute
   '/app/requirements': typeof AppRequirementsRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/test-cases': typeof AppTestCasesRoute
   '/app/': typeof AppIndexRoute
   '/app/projects/$projectId': typeof AppProjectsProjectIdRoute
   '/app/projects/': typeof AppProjectsIndexRoute
@@ -96,7 +123,10 @@ export interface FileRouteTypes {
     | '/app'
     | '/login'
     | '/signup'
+    | '/app/reports'
     | '/app/requirements'
+    | '/app/settings'
+    | '/app/test-cases'
     | '/app/'
     | '/app/projects/$projectId'
     | '/app/projects/'
@@ -105,7 +135,10 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/signup'
+    | '/app/reports'
     | '/app/requirements'
+    | '/app/settings'
+    | '/app/test-cases'
     | '/app'
     | '/app/projects/$projectId'
     | '/app/projects'
@@ -115,7 +148,10 @@ export interface FileRouteTypes {
     | '/app'
     | '/login'
     | '/signup'
+    | '/app/reports'
     | '/app/requirements'
+    | '/app/settings'
+    | '/app/test-cases'
     | '/app/'
     | '/app/projects/$projectId'
     | '/app/projects/'
@@ -165,11 +201,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/test-cases': {
+      id: '/app/test-cases'
+      path: '/test-cases'
+      fullPath: '/app/test-cases'
+      preLoaderRoute: typeof AppTestCasesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/settings': {
+      id: '/app/settings'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/requirements': {
       id: '/app/requirements'
       path: '/requirements'
       fullPath: '/app/requirements'
       preLoaderRoute: typeof AppRequirementsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/reports': {
+      id: '/app/reports'
+      path: '/reports'
+      fullPath: '/app/reports'
+      preLoaderRoute: typeof AppReportsRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/projects/': {
@@ -190,14 +247,20 @@ declare module '@tanstack/react-router' {
 }
 
 interface AppRouteChildren {
+  AppReportsRoute: typeof AppReportsRoute
   AppRequirementsRoute: typeof AppRequirementsRoute
+  AppSettingsRoute: typeof AppSettingsRoute
+  AppTestCasesRoute: typeof AppTestCasesRoute
   AppIndexRoute: typeof AppIndexRoute
   AppProjectsProjectIdRoute: typeof AppProjectsProjectIdRoute
   AppProjectsIndexRoute: typeof AppProjectsIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppReportsRoute: AppReportsRoute,
   AppRequirementsRoute: AppRequirementsRoute,
+  AppSettingsRoute: AppSettingsRoute,
+  AppTestCasesRoute: AppTestCasesRoute,
   AppIndexRoute: AppIndexRoute,
   AppProjectsProjectIdRoute: AppProjectsProjectIdRoute,
   AppProjectsIndexRoute: AppProjectsIndexRoute,
