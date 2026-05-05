@@ -27,14 +27,15 @@ export const Route = createFileRoute("/app")({
   },
 });
 
-const nav = [
+type NavItem = { to: string; label: string; icon: typeof LayoutDashboard; exact?: boolean };
+const nav: NavItem[] = [
   { to: "/app", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { to: "/app/projects", label: "Projects", icon: FolderGit2 },
   { to: "/app/requirements", label: "Requirements", icon: ListChecks },
   { to: "/app/test-cases", label: "Test Cases", icon: FlaskConical },
   { to: "/app/reports", label: "Reports", icon: FileBarChart },
   { to: "/app/settings", label: "Settings", icon: Settings },
-] as const;
+];
 
 function AppLayout() {
   const navigate = useNavigate();
